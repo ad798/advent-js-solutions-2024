@@ -4,14 +4,14 @@ type Inventory = Array<
 
 function organizeInventory(inventory: Inventory): object {
   let result = {}
-  for (const obj of inventory) {
-    if (!result[obj.category]) {
-      result[obj.category] = {}
+  for (const {category, name, quantity} of inventory) {
+    if (!result[category]) {
+      result[category] = {}
     }
-    if (!result[obj.category][obj.name]) {
-      result[obj.category][obj.name] = 0
+    if (!result[category][name]) {
+      result[category][name] = 0
     }
-    result[obj.category][obj.name] += obj.quantity 
+    result[category][name] += quantity 
   }
   return result
 }
