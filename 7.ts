@@ -1,23 +1,17 @@
 function fixPackages(packages) {
-    let stack = [];  // Pila para almacenar los caracteres
+    let stack = [];
     for (let char of packages) {
         if (char === ')') {
-            // Cuando encontramos un paréntesis de cierre, procesamos el contenido dentro
-            let temp = '';
-            // Desapilamos hasta encontrar el paréntesis abierto
-            while (stack.length > 0 && stack[stack.length - 1] !== '(') {
-                temp += stack.pop();  // Formamos el contenido invertido
+            // Revertimos los elementos dentro de los paréntesis
+            let temp = [];
+            while (stack[stack.length - 1] !== '(') {
+                temp.push(stack.pop());
             }
-            stack.pop();  // Eliminar el paréntesis abierto '('
-            // Lo apilamos de nuevo
-            for (let c of temp) {
-                stack.push(c);
-            }
+            stack.pop();  // Quitamos el '('
+            stack.push(...temp);  // Colocamos los elementos revertidos en la pila
         } else {
-            // Si no es un paréntesis, simplemente apilamos el carácter
-            stack.push(char);
+            stack.push(char);  // Simplemente apilamos el carácter
         }
     }
-    // Al final, unimos los caracteres de la pila para obtener el resultado
-    return stack.join('');
+    return stack.join('');  // Unimos y devolvemos el resultado
 }
