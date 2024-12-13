@@ -29,9 +29,9 @@ function isRobotBack(moves: string): true | [number, number] {
       movesArr[i] = movesArr[i + 1] // duplicamos el movimiento
       i-- // regresamos una posición
     } else if (movesArr[i] === "!") {
-      movesArr[i + 1] = inverted[movesArr[i + 1]] // invertimos el movimiento
+      movesArr[i + 1] = inverted[movesArr[i + 1]] // invertimos el siguiente movimiento
     } else if (movesArr[i] === "?" && commandDone[movesArr[i + 1]]) { // Verificamos si el movimiento se ha hecho alguna vez antes
-      i++
+      i++ // saltamos el siguiente movimiento
     }
   }
   return resultX === 0 && resultY === 0 ? true : [resultX, resultY]
