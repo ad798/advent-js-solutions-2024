@@ -1,7 +1,7 @@
 function generateGiftSets(gifts: string[]): string[][] {
   const result = [];
 
-  function backtrack(currentSet, start) {
+  function backtrack(currentSet: string[], start: number) {
     if (start > 0) result.push([...currentSet]); // Add current combination to the result
 
     for (let i = start; i < gifts.length; i++) {
@@ -12,5 +12,5 @@ function generateGiftSets(gifts: string[]): string[][] {
   }
 
   backtrack([], 0); // Start backtracking with an empty set and index 0
-  return result;
+  return result.sort((a, b) => a.length - b.length);
 }
