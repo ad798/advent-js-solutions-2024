@@ -1,11 +1,6 @@
 function findMissingNumbers(nums: number[]): number[] {
   let n = Math.max(...nums)
-  if (nums.length > n && (nums.length - n) < 1){
-    n = nums.length
-  }
-  let result = []
-  for (let i = 1; i < n ; i++) {
-    if (!nums.includes(i)) result.push(i)
-  }
-  return result
+  let uniqueNums = new Set(nums)
+  let values = new Set(Array.from({length: n}, (_, i) => i + 1))
+  return [...values.difference(uniqueNums)]
 }
